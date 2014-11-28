@@ -34,7 +34,7 @@ NATDYNLINK ?= $(shell if [ -f `ocamlc -where`/dynlink.cmxa ]; then \
 OCAMLBUILD_IMPL := ocamlbuild_cppo.cma
 
 ifeq "${BEST}" "opt"
-OCAMLBUILD_IMPL += ocamlbuild_cppo.cmxa ocamlbuild_cppo.a
+OCAMLBUILD_IMPL += ocamlbuild_cppo.cmxa ocamlbuild_cppo.lib
 ifeq "${NATDYNLINK}" "YES"
 OCAMLBUILD_IMPL += ocamlbuild_cppo.cmxs
 endif
@@ -99,7 +99,7 @@ test:
 	$(MAKE) -C test
 
 clean:
-	rm -f *.cm[iox] *.o *.annot *.conflicts *.automaton \
+	rm -f *.cm[iox] *.obj *.annot *.conflicts *.automaton \
 		cppo \
 		cppo_parser.mli cppo_parser.ml cppo_lexer.ml cppo_version.ml
 	$(MAKE) -C examples clean
