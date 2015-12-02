@@ -165,7 +165,7 @@ or into a variable with the same properties."
                `Text (_, is_space, s) -> s
              | _ ->
                  expansion_error ()
-           ) l
+           ) (Cppo_types.flatten_nodes l)
          in
          let s = String.concat "" text in
          (match Cppo_lexer.int_tuple_of_string s with
@@ -451,7 +451,7 @@ and expand_node ?(top = false) g env0 x =
           with Not_found -> None
         in
         let g =
-          if top && def <> None then
+          if top && def <> None || g.call_loc == dummy_loc then
             { g with call_loc = loc }
           else g
         in

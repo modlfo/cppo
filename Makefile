@@ -1,4 +1,4 @@
-VERSION = 1.1.2
+VERSION = 1.3.1
 
 ifeq "$(shell ocamlc -config |grep os_type)" "os_type: Win32"
 EXE=.exe
@@ -24,7 +24,7 @@ export BINDIR
 
 
 
-BEST := opt
+BEST = $(shell if ocamlopt 2>/dev/null; then echo .native; else echo .byte; fi)
 NATDYNLINK ?= $(shell if [ -f `ocamlc -where`/dynlink.cmxa ]; then \
                         echo YES; \
                       else \
@@ -33,7 +33,7 @@ NATDYNLINK ?= $(shell if [ -f `ocamlc -where`/dynlink.cmxa ]; then \
 
 OCAMLBUILD_IMPL := ocamlbuild_cppo.cma
 
-ifeq "${BEST}" "opt"
+ifeq "${BEST}" ".native"
 OCAMLBUILD_IMPL += ocamlbuild_cppo.cmxa ocamlbuild_cppo.lib
 ifeq "${NATDYNLINK}" "YES"
 OCAMLBUILD_IMPL += ocamlbuild_cppo.cmxs

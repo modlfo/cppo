@@ -42,7 +42,7 @@ failure
    456 *)
 test_multiline
 
-#define test_args(x,y) x y
+#define test_args(x, y) x y
 test_args("a","b")
 
 #define test_argc(x) x y
@@ -73,7 +73,7 @@ obj
 '  (* lone single quote *)
 
 #define one 1
-oneê is not 1 ê
+one is not 1
 
 #undef x
 #define x #
@@ -133,11 +133,11 @@ end
 DEBUG("test1 %i %i" x y)
 DEBUG("test2 %i" x)
 
-#include "testdata/incl.cppo"
+#include "test/incl.cppo"
 # 123456
 
 #789 "test"
-#include "testdata/incl.cppo"
+#include "test/incl.cppo"
 
 #define debug(s) Printf.eprintf "%S %i: %s\n%!" __FILE__ __LINE__ s
 
